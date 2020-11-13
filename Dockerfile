@@ -36,6 +36,8 @@ RUN if [ "${DOCKER_FAKE_RELEASE}" = "YES" ]; then \
       BUILDER_VERSION="$(BUILDER_MODULES=authoritative ./builder-support/gen-version | sed 's/\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/')" set-configure-ac-version.sh;\
     fi && \
     BUILDER_MODULES=authoritative autoreconf -vfi
+    
+RUN DEBIAN_FRONTEND=noninteractive apt-get install g++ libboost-all-dev libtool make pkg-config default-libmysqlclient-dev libssl-dev virtualenv libluajit-5.1-dev autoconf automake ragel bison flex -yqq
 
 # simplify repeated -C calls with SUBDIRS?
 RUN mkdir /build && \
