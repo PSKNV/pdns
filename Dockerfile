@@ -13,7 +13,7 @@ RUN apt-get update && apt-get -y dist-upgrade && apt-get install -y  --no-instal
 RUN git clone --depth 1 https://github.com/PSKNV/pdns.git /source/
 
 # import everything - this could be pdns.git OR an auth tarball!
-COPY builder-support /source/builder-support
+# COPY builder-support /source/builder-support
 
 # TODO: control file is not in tarballs at all right now
 RUN mk-build-deps -i -t 'apt-get -y -o Debug::pkgProblemResolver=yes --no-install-recommends' /source/builder-support/debian/authoritative/debian-buster/control && \
@@ -24,9 +24,7 @@ WORKDIR /source/
 
 RUN git submodule init; git submodule update
 
-RUN ls -lah /; ls -lah /source; ls -lah /source/builder; ls -lah /source/helpers
-
-COPY /source/builder/helpers/set-configure-ac-version.sh /usr/local/bin
+RUN cp /source/builder/helpers/set-configure-ac-version.sh /usr/local/bin
 
 ARG MAKEFLAGS=
 ENV MAKEFLAGS ${MAKEFLAGS:--j2}
