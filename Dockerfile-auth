@@ -19,6 +19,8 @@ RUN mk-build-deps -i -t 'apt-get -y -o Debug::pkgProblemResolver=yes --no-instal
 # build and install (TODO: before we hit this line, rearrange /source structure if we are coming from a tarball)
 WORKDIR /source/
 
+RUN git clone --depth 1 --branch master https://github.com/PowerDNS/pdns-builder.git ./builder
+
 COPY pdns /source/pdns
 COPY modules /source/modules
 COPY codedocs /source/codedocs
