@@ -1,0 +1,7 @@
+{
+  "name": "PowerDNS",
+  "description": "",
+  "keywords": [],
+  "repository": "https://github.com/PSKNV/pdns",
+  "stack": "container"
+}
