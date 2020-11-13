@@ -2,6 +2,8 @@ PowerDNS is copyright © 2001-2020 by PowerDNS.COM BV and lots of
 contributors, using the GNU GPLv2 license (see NOTICE for the
 exact license and exception used).
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/PSKNV/pdns)
+
 All documentation can be found on https://doc.powerdns.com/
 
 This file may lag behind at times. For most recent updates, always check
