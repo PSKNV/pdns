@@ -24,7 +24,9 @@ WORKDIR /source/
 
 RUN git submodule init; git submodule update
 
-COPY builder/helpers/set-configure-ac-version.sh /usr/local/bin
+RUN ls -lah /; ls -lah /source; ls -lah /source/builder; ls -lah /source/helpers
+
+COPY /source/builder/helpers/set-configure-ac-version.sh /usr/local/bin
 
 ARG MAKEFLAGS=
 ENV MAKEFLAGS ${MAKEFLAGS:--j2}
