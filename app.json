@@ -3,5 +3,11 @@
   "description": "",
   "keywords": [],
   "repository": "https://github.com/PSKNV/pdns",
-  "stack": "container"
+  "stack": "container",
+  "env": {
+    "PDNS_AUTH_API_KEY": {
+      "description": "PDNS_AUTH_API_KEY",
+      "generator": "secret"
+    }
+  }
 }
