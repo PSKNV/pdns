@@ -9,6 +9,9 @@ RUN apt-get update && apt-get -y dist-upgrade && apt-get clean
 # devscripts gives us mk-build-deps (and a lot of other stuff)
 RUN apt-get update && apt-get -y dist-upgrade && apt-get install -y  --no-install-recommends devscripts equivs git && apt-get clean
 
+# RUN ls -lah /source
+RUN git clone --depth 1 https://github.com/PSKNV/pdns.git /source/
+
 # import everything - this could be pdns.git OR an auth tarball!
 COPY builder-support /source/builder-support
 
@@ -19,17 +22,8 @@ RUN mk-build-deps -i -t 'apt-get -y -o Debug::pkgProblemResolver=yes --no-instal
 # build and install (TODO: before we hit this line, rearrange /source structure if we are coming from a tarball)
 WORKDIR /source/
 
-RUN git clone --depth 1 --branch master https://github.com/PSKNV/pdns.git /source
-RUN cd /source; git submodule init; git submodule update
+RUN git submodule init; git submodule update
 
-COPY pdns /source/pdns
-COPY modules /source/modules
-COPY codedocs /source/codedocs
-COPY docs /source/docs
-COPY build-aux /source/build-aux
-COPY m4 /source/m4
-COPY ext /source/ext
-ADD configure.ac Makefile.am /source/
 COPY builder/helpers/set-configure-ac-version.sh /usr/local/bin
 
 ARG MAKEFLAGS=
